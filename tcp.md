@@ -1,0 +1,1 @@
+El protocolo TCP es un protocolo de comunicación que prioriza la entrega segura de paquetes de información. Consiste en establecer la conexión entre emisor y receptor, corregir errores, y asegurar que los paquetes lleguen correctamente.

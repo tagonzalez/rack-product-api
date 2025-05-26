@@ -1,0 +1,1 @@
+HTTP es el protocolo de comunicación que funciona sobre la capa de TCP y permite a los navegadores web comunicarse con servideros. Se usa para realizar pedidos HTTP que tendrán como respuesta las páginas web, imágenes, y otros recursos.

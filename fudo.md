@@ -1,0 +1,2 @@
+Fudo es una plataforma de software en la nube que facilita varios aspectos de la gestión de un emprendimiento gastronómico con soluciones informáticas. Estos aspectos incluyen las ventas de productos, organización de delivery por pedidos, y facturación.
+También ofrece funcionalidades como tienda online para el emprendimiento, integración con apps de delivery y monitoreo de los procesos de la cocina. 
