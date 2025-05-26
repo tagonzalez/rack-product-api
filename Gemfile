@@ -12,3 +12,7 @@ gem "grape", "~> 2.3"
 gem "grape-swagger", "~> 2.1"
 
 gem "sidekiq", "~> 8.0"
+
+gem "securerandom", "~> 0.4.1"
+
+gem "rackup", "~> 2.2"
