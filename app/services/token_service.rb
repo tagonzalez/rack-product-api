@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class TokenService
+  @csv_mutex = Mutex.new
+
   class << self
     CSV_FILE = 'csv/tokens.csv'
 
@@ -9,15 +11,19 @@ class TokenService
 
       token = token.split(' ').last
 
-      CSV.foreach(CSV_FILE, headers: true) do |row|
-        return true if row['token'] == token
+      @csv_mutex.synchronize do
+        CSV.foreach(CSV_FILE, headers: true) do |row|
+          return true if row['token'] == token
+        end
       end
     end
 
     def generate
       token = SecureRandom.hex(10)
-      CSV.open(CSV_FILE, 'a') do |csv|
-        csv << [token]
+      @csv_mutex.synchronize do
+        CSV.open(CSV_FILE, 'a') do |csv|
+          csv << [token]
+        end
       end
       token
     end
