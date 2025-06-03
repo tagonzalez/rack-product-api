@@ -1,27 +1,34 @@
+# frozen_string_literal: true
+
 require 'rack'
 require 'grape'
 require 'grape-swagger'
 require 'csv'
 require 'securerandom'
 require 'logger'
-require_relative './app/api'
-require_relative './app/products'
-require_relative './worker'
-require_relative './app/token'
-require_relative './app/user'
+require 'zeitwerk'
+require 'sidekiq'
 
-LOGGER = Logger.new(STDOUT)
+loader = Zeitwerk::Loader.new
+loader.push_dir("#{__dir__}/app/controllers")
+loader.push_dir("#{__dir__}/app/models")
+loader.push_dir("#{__dir__}/app/services")
+loader.push_dir("#{__dir__}/app/workers")
+loader.enable_reloading
+loader.setup
+
+LOGGER = Logger.new($stdout)
 LOGGER.level = Logger::DEBUG
-LOGGER.debug("Starting Rack application...")
+LOGGER.debug('Starting Rack application...')
 
 use Rack::Deflater
 use Rack::Static,
-  urls: ["/AUTHORS", "/openapi.yml"],
-  root: File.expand_path(File.dirname(__FILE__)),
-  header_rules: [
-    [/AUTHORS/, { 'cache-control' => 'public, max-age=86400' }],
-    [/openapi\.yml/, { 'cache-control' => 'no-store, no-cache, must-revalidate, max-age=0' }]
-  ]
+    urls: ['/AUTHORS', '/openapi.yml'],
+    root: __dir__,
+    header_rules: [
+      [/AUTHORS/, { 'cache-control' => 'public, max-age=86400' }],
+      [/openapi\.yml/, { 'cache-control' => 'no-store, max-age=0' }]
+    ]
 
 use Rack::Reloader, 0
-run App::API
+run Api::Base

@@ -1,18 +1,22 @@
 # frozen_string_literal: true
 
-source "https://rubygems.org"
+source 'https://rubygems.org'
 
 # gem "rails"
 
-gem "puma", "~> 6.6"
+gem 'puma', '~> 6.6'
 
-gem "rack", "~> 3.1"
+gem 'rack', '~> 3.1'
 
-gem "grape", "~> 2.3"
-gem "grape-swagger", "~> 2.1"
+gem 'grape', '~> 2.3'
+gem 'grape-swagger', '~> 2.1'
 
-gem "sidekiq", "~> 8.0"
+gem 'sidekiq', '~> 8.0'
 
-gem "securerandom", "~> 0.4.1"
+gem 'securerandom', '~> 0.4.1'
 
-gem "rackup", "~> 2.2"
+gem 'rackup', '~> 2.2'
+
+gem 'rubocop', '~> 1.75'
+
+gem 'zeitwerk', '~> 2.7'

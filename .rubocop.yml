@@ -1,0 +1,10 @@
+Style/Documentation:
+  Enabled: false
+  
+Style/FrozenStringLiteralComment:
+  Enabled: true
+  EnforcedStyle: always
+  AutoCorrect: true
+  SupportedEnvironments:
+    - ruby
+  SafeAutoCorrect: true
