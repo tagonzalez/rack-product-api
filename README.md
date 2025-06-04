@@ -5,12 +5,14 @@
 ## CSV files
 This project uses CSV files instead of a database for simplicity. One can add their own user to the `users.csv` for example if they choose to by just appending a `username,password` row.
 
-## Using Docker compose
+## Commands
 ```
-docker-compose up
+bin/dev build # Builds the docker containers for the app
+bin/dev up # Starts the app with the corresponding Docker containers
+bin/dev test # Executes the apps tests in the Docker container
 ```
 
-Now the app runs on `0.0.0.0:9292`
+Once the app is started it'll run in `0.0.0.0:9292`
 
 ## Endpoints
 The API requires that you first execute a request to the `auth` endpoint in order to get a token.
@@ -26,5 +28,20 @@ curl --location '0.0.0.0:9292/v1/auth' \
     "username": "username",
     "password": "password"
 }'
+
+=> {"message":"Authenticated successfully","token":"TOKEN"}%
 ```
-2. 
+2. Obtain the `TOKEN` and use it in subsequent requests
+```shell 
+# Getting products
+curl --location '0.0.0.0:9292/v1/products' \
+--header 'Authorization: Bearer TOKEN'
+
+# Creating products
+curl --location '0.0.0.0:9292/v1/products' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Bearer TOKEN' \
+--data '{
+    "name": "New product name"
+}'
+```
