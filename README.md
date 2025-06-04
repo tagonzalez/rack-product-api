@@ -12,7 +12,7 @@ bin/dev up # Starts the app with the corresponding Docker containers
 bin/dev test # Executes the apps tests in the Docker container
 ```
 
-Once the app is started it'll run in `0.0.0.0:9292`
+Once the app starts it'll run in `0.0.0.0:9292`
 
 ## Endpoints
 The API requires that you first execute a request to the `auth` endpoint in order to get a token.
