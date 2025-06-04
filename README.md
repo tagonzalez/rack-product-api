@@ -29,7 +29,7 @@ curl --location '0.0.0.0:9292/v1/auth' \
     "password": "password"
 }'
 
-=> {"message":"Authenticated successfully","token":"TOKEN"}%
+# => {"message":"Authenticated successfully","token":"TOKEN"}%
 ```
 2. Obtain the `TOKEN` and use it in subsequent requests
 ```shell 
