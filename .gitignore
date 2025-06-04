@@ -56,3 +56,4 @@ build-iPhoneSimulator/
 # .rubocop-https?--*
 dump.rdb
 .DS_Store
+.vscode
