@@ -13,16 +13,17 @@ class ProductTest < Minitest::Test
   end
 
   def teardown
-    File.delete(CSV_FILE) if File.exist?(CSV_FILE)
+    FileUtils.rm_f(CSV_FILE)
   end
 
   def test_all_returns_empty_array_when_no_products
-    assert_equal [], Product.all
+    assert_empty(Product.all)
   end
 
   def test_create_adds_a_product
     Product.create('Test Product')
     products = Product.all
+
     assert_equal 1, products.size
     assert_equal 'Test Product', products.first[:name]
     assert_equal 1, products.first[:id]
@@ -32,6 +33,7 @@ class ProductTest < Minitest::Test
     Product.create('First')
     Product.create('Second')
     products = Product.all
+
     assert_equal 2, products.size
     assert_equal 2, products.last[:id]
     assert_equal 'Second', products.last[:name]

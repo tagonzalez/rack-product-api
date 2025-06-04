@@ -20,8 +20,10 @@ class ApiProductsTest < Minitest::Test
     TokenService.stub :valid?, true do
       Product.stub :all, [{ id: 1, name: 'Test Product' }] do
         get '/v1/products'
+
         assert_equal 200, last_response.status
         body = JSON.parse(last_response.body)
+
         assert_kind_of Array, body
         assert_equal 'Test Product', body.first['name']
       end
@@ -32,8 +34,10 @@ class ApiProductsTest < Minitest::Test
     TokenService.stub :valid?, true do
       AddProductWorker.stub :perform_in, true do
         post '/v1/products', { name: 'New Product' }.to_json, { 'CONTENT_TYPE' => 'application/json' }
+
         assert_equal 202, last_response.status
         body = JSON.parse(last_response.body)
+
         assert_match(/Request to add product has been accepted/, body['message'])
       end
     end
@@ -42,8 +46,10 @@ class ApiProductsTest < Minitest::Test
   def test_unauthorized_access
     TokenService.stub :valid?, false do
       get '/v1/products'
+
       assert_equal 401, last_response.status
       body = JSON.parse(last_response.body)
+
       assert_equal 'Unauthorized', body['error']
     end
   end

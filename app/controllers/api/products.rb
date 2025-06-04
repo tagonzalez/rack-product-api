@@ -6,6 +6,7 @@ module Api
       before do
         error!({ error: 'Unauthorized' }, 401) unless ::TokenService.valid?(headers['Authorization'])
       end
+
       desc 'Returns a list of products'
       get do
         ::Product.all

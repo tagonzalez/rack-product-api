@@ -10,6 +10,9 @@ case "$1" in
   test)
     docker-compose run --rm app bundle exec rake test
     ;;
+  rubocop)
+    docker-compose run --rm app bundle exec rubocop
+    ;;
   *)
     echo "Usage: $0 {build|up|test}"
     echo ""

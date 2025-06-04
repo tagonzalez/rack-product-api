@@ -22,6 +22,8 @@ loader.setup
 # # Configure Sidekiq for testing
 # Sidekiq::Testing.inline! # Use inline mode to execute jobs immediately
 
-class Minitest::Test
-  include Rack::Test::Methods
+module Minitest
+  class Test
+    include Rack::Test::Methods
+  end
 end

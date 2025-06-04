@@ -4,12 +4,12 @@ class TokenService
   @csv_mutex = Mutex.new
 
   class << self
-    CSV_FILE = "csv/#{ENV['RACK_ENV']}/tokens.csv".freeze
+    CSV_FILE = "csv/#{ENV.fetch('RACK_ENV', nil)}/tokens.csv"
 
     def valid?(token)
       return false unless token.start_with?('Bearer ')
 
-      token = token.split(' ').last
+      token = token.split.last
 
       @csv_mutex.synchronize do
         CSV.foreach(CSV_FILE, headers: true) do |row|

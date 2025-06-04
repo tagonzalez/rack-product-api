@@ -4,7 +4,7 @@ class Product
   @csv_mutex = Mutex.new
 
   class << self
-    CSV_FILE = "csv/#{ENV['RACK_ENV']}/products.csv".freeze
+    CSV_FILE = "csv/#{ENV.fetch('RACK_ENV', nil)}/products.csv"
 
     def all
       @csv_mutex.synchronize do

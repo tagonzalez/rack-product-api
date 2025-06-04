@@ -9,27 +9,39 @@ class ApiAuthTest < Minitest::Test
     Api::Base
   end
 
-  def test_auth_success
+  def make_request(username, password)
+    post 'v1/auth', { username: username, password: password }.to_json,
+         { 'CONTENT_TYPE' => 'application/json' }
+  end
+
+  def authenticated_user_mock
     user_mock = Minitest::Mock.new
     user_mock.expect :authenticate, true, ['valid_password']
+    user_mock
+  end
+
+  def test_auth_success
+    user_mock = authenticated_user_mock
     User.stub :find, user_mock do
       TokenService.stub :generate, 'mocked_token' do
-        post 'v1/auth', { username: 'valid_user', password: 'valid_password' }.to_json,
-             { 'CONTENT_TYPE' => 'application/json' }
+        make_request('valid_user', 'valid_password')
+
         assert_equal 201, last_response.status
         body = JSON.parse(last_response.body)
+
         assert_equal 'Authenticated successfully', body['message']
-        assert_equal body['token'], 'mocked_token'
+        assert_equal 'mocked_token', body['token']
       end
     end
   end
 
   def test_auth_failure
     User.stub :find, nil do
-      post 'v1/auth', { username: 'invalid_user', password: 'wrong_password' }.to_json,
-           { 'CONTENT_TYPE' => 'application/json' }
+      make_request('invalid_user', 'invalid_password')
+
       assert_equal 401, last_response.status
       body = JSON.parse(last_response.body)
+
       assert_equal 'Invalid username or password', body['error']
     end
   end

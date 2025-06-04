@@ -13,7 +13,7 @@ class User
   end
 
   def self.find(username)
-    CSV.foreach("csv/#{ENV['RACK_ENV']}/users.csv", headers: true) do |row|
+    CSV.foreach("csv/#{ENV.fetch('RACK_ENV', nil)}/users.csv", headers: true) do |row|
       return User.new(row['username'], row['password']) if row['username'] == username
     end
 
