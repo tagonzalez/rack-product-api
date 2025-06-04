@@ -4,7 +4,7 @@ class TokenService
   @csv_mutex = Mutex.new
 
   class << self
-    CSV_FILE = 'csv/tokens.csv'
+    CSV_FILE = "csv/#{ENV['RACK_ENV']}/tokens.csv".freeze
 
     def valid?(token)
       return false unless token.start_with?('Bearer ')

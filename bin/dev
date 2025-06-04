@@ -1,0 +1,22 @@
+#!/bin/sh
+
+case "$1" in
+  up)
+    docker-compose up
+    ;;
+  build)
+    docker-compose build
+    ;;
+  test)
+    docker-compose run --rm app bundle exec rake test
+    ;;
+  *)
+    echo "Usage: $0 {build|up|test}"
+    echo ""
+    echo "Commands:"
+    echo "  build   - Build all services"
+    echo "  up      - Start all services"
+    echo "  test    - Run tests in the app"
+    exit 1
+    ;;
+esac
