@@ -2,14 +2,11 @@
 
 source 'https://rubygems.org'
 
-# gem "rails"
-
 gem 'puma', '~> 6.6'
 
 gem 'rack', '~> 3.1'
 
 gem 'grape', '~> 2.3'
-gem 'grape-swagger', '~> 2.1'
 
 gem 'sidekiq', '~> 8.0'
 
@@ -21,8 +18,8 @@ gem 'rubocop', '~> 1.75'
 
 gem 'zeitwerk', '~> 2.7'
 
-gem "minitest", "~> 5.25"
+gem 'minitest', '~> 5.25'
 
-gem "rake", "~> 13.3"
+gem 'rake', '~> 13.3'
 
-gem "rack-console", "~> 1.4"
+gem 'rack-console', '~> 1.4'

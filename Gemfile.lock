@@ -44,9 +44,6 @@ GEM
       mustermann-grape (~> 1.1.0)
       rack (>= 2)
       zeitwerk
-    grape-swagger (2.1.2)
-      grape (>= 1.7, < 3.0)
-      rack-test (~> 2)
     i18n (1.14.7)
       concurrent-ruby (~> 1.0)
     json (2.12.2)
@@ -117,7 +114,6 @@ PLATFORMS
 
 DEPENDENCIES
   grape (~> 2.3)
-  grape-swagger (~> 2.1)
   minitest (~> 5.25)
   puma (~> 6.6)
   rack (~> 3.1)
