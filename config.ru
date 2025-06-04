@@ -2,7 +2,6 @@
 
 require 'rack'
 require 'grape'
-require 'grape-swagger'
 require 'csv'
 require 'securerandom'
 require 'logger'
