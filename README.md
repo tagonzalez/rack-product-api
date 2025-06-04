@@ -15,6 +15,8 @@ bin/dev test # Executes the apps tests in the Docker container
 Once the app starts it'll run in `0.0.0.0:9292`
 
 ## Endpoints
+
+### Authorized endpoints
 The API requires that you first execute a request to the `auth` endpoint in order to get a token.
 
 Once obtained, the token must be sent in the `Authorization` header as a `Bearer` token for subsequent requests.
@@ -44,4 +46,12 @@ curl --location '0.0.0.0:9292/v1/products' \
 --data '{
     "name": "New product name"
 }'
+```
+### Other endpoints
+```shell
+# Obtain the openapi.yml
+curl --location '0.0.0.0:9292/openapi.yml'
+
+# Obtain the AUTHORS file
+curl --location '0.0.0.0:9292/AUTHORS'
 ```
